@@ -18,9 +18,26 @@ productoRouter.get('/', (req, res)=>{
 });
 
 productoRouter.post('/', (req, res)=>{
-    console.log(req.query);
-    const data = req.query;
-    const resultado = Productos.crear(data.title, data.price, data.thumbnail);
+    
+    let data = {};
+    let resultado = {};
+    // console.log(req.body.title);
+    // console.log(req.query.title);
+
+    if (req.query.title!=null){
+        console.log('Es query params ');
+        data = req.query;
+        console.log(data);
+        resultado = Productos.crear(data.title, data.price, data.thumbnail);
+    }else if(req.body.title!=null){
+        console.log('No es query params, es Body, viene de un post de html');
+        data = req.body;
+        resultado = Productos.crear(data.title, data.price, data.thumbnail);
+        console.log(data);
+    }
+    
+    
+    
     res.json(resultado);
 });
 productoRouter.put('/:id', (req, res)=>{
