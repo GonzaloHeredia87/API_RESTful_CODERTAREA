@@ -55,12 +55,12 @@ class Producto{
     }
 
     borra(id){
-        let estado = false;
+        let estado = {status: 'Producto no encontrado para borrar'};
         if (this.objeto.length>0){
             for(let i = 0; this.objeto.length>i;i++){
                 if (this.objeto[i].id==id){
                     this.objeto.splice(i, 1);
-                    estado = true;
+                    estado = {statu: 'Producto borrado con éxito'};
                 }
             }
         }

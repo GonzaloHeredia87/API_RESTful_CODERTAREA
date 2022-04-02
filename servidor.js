@@ -30,15 +30,15 @@ productoRouter.post('/', (req, res)=>{
     let data = {};
     let resultado = {};
     if (req.query.title!=null){
-        console.log('Es query params ');
+        //console.log('Es query params ');
         data = req.query;
-        console.log(resultado);
+        //console.log(resultado);
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
     }else if(req.body.title!=null){
-        console.log('No es query params, es Body, viene de un post de html');
+        //console.log('No es query params, es Body, viene de un post de html');
         data = req.body;
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
-        console.log(resultado);
+        //console.log(resultado);
     }
     
     
@@ -46,12 +46,9 @@ productoRouter.post('/', (req, res)=>{
     res.json(resultado);
 });
 productoRouter.put('/:id', (req, res)=>{
-    console.log(req.params.id);
-    console.log(req.params);
-    console.log(req.query);
     const id = req.params.id;
     const data = req.query;
-    let resultado = "Favor completa los datos";
+    let resultado = "Favor completalos datos";
     if (id!=null){
         if (data.title!=null && data.price!=null && data.thumbnail!=null ){
             resultado = Productos.editar(id, data.title, data.price, data.thumbnail)
