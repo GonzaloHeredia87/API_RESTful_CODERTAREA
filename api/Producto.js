@@ -22,9 +22,11 @@ class Producto{
 
     buscar(id){
         const persona = {error:'Producto no encontrado'};
-        for(let i =0; this.objeto.length>=i; i++){
-            if (this.objeto[i].id==id){
-                persona = this.objeto[i];
+        if (this.objeto.length>0){
+            for(let i =0; this.objeto.length>=i; i++){
+                if (this.objeto[i].id==id){
+                    persona = this.objeto[i];
+                }
             }
         }
         return persona;

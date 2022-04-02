@@ -16,7 +16,12 @@ productoRouter.get('/', (req, res)=>{
     console.log(Productos.obtenerTodo());
     res.json(Productos.obtenerTodo());
 });
+productoRouter.get('/:id', (req, res)=>{
 
+    const index = req.params.id;
+    res.json(Productos.buscar(index));
+
+});
 productoRouter.post('/', (req, res)=>{
     
     let data = {};
