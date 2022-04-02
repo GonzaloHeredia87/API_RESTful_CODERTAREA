@@ -16,12 +16,15 @@ productoRouter.get('/', (req, res)=>{
     console.log(Productos.obtenerTodo());
     res.json(Productos.obtenerTodo());
 });
-productoRouter.get('/:id', (req, res)=>{
 
+productoRouter.get('/:id', (req, res)=>{
     const index = req.params.id;
-    res.json(Productos.buscar(index));
+    const data = Productos.buscar(index);
+    console.log('en buscar, id enviado: '+data);
+    res.json(data);
 
 });
+
 productoRouter.post('/', (req, res)=>{
     
     let data = {};
@@ -32,13 +35,13 @@ productoRouter.post('/', (req, res)=>{
     if (req.query.title!=null){
         console.log('Es query params ');
         data = req.query;
-        console.log(data);
+        console.log(resultado);
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
     }else if(req.body.title!=null){
         console.log('No es query params, es Body, viene de un post de html');
         data = req.body;
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
-        console.log(data);
+        console.log(resultado);
     }
     
     
@@ -54,10 +57,11 @@ productoRouter.delete('/:id', (req, res)=>{
     const index = req.params.id;
     res.json(Productos.borra(index));
 });
+
 app.use('/productos', productoRouter);
 
-const server = app.listen(PORT, ()=>{
-    console.log('servidor http en el puerto 8888');
 
-});
-server.on('error', error=>console.log(`Error en el servidor ${error}`));
+const server = app.listen(PORT, () => {
+    console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
+})
+server.on("error", error => console.log(`Error en servidor ${error}`));

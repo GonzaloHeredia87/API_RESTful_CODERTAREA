@@ -21,11 +21,13 @@ class Producto{
     }
 
     buscar(id){
-        const persona = {error:'Producto no encontrado'};
+        let persona = {error:'Producto no encontrado'};
+        
         if (this.objeto.length>0){
-            for(let i =0; this.objeto.length>=i; i++){
+            for(let i = 0; this.objeto.length>i;i++){
                 if (this.objeto[i].id==id){
                     persona = this.objeto[i];
+                    
                 }
             }
         }
