@@ -35,17 +35,23 @@ class Producto{
     }
 
     editar(id, title, price, thumbnail){
-        const persona = {};
+        let persona = {};
+        let resultado = "No existen productos";
         if (this.objeto.length>0){
-            for (let i = 0; this.objeto.length>=i;i++){
+            for (let i = 0; this.objeto.length>i;i++){
                 if(this.objeto[i].id == id){
                     this.objeto[i].title = title;
                     this.objeto[i].price = price;
                     this.objeto[i].thumbnail = thumbnail;
                     persona = this.objeto[i];
+                    resultado = {   
+                        status: 'proceso realizado con exito',
+                        producto: this.objeto[i].id
+                    }
                 }
             }
         }
+        return resultado;
     }
 
     borra(id){

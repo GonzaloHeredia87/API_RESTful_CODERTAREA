@@ -29,9 +29,6 @@ productoRouter.post('/', (req, res)=>{
     
     let data = {};
     let resultado = {};
-    // console.log(req.body.title);
-    // console.log(req.query.title);
-
     if (req.query.title!=null){
         console.log('Es query params ');
         data = req.query;
@@ -50,7 +47,17 @@ productoRouter.post('/', (req, res)=>{
 });
 productoRouter.put('/:id', (req, res)=>{
     console.log(req.params.id);
-    res.json("in put");
+    console.log(req.params);
+    console.log(req.query);
+    const id = req.params.id;
+    const data = req.query;
+    let resultado = "Favor completa los datos";
+    if (id!=null){
+        if (data.title!=null && data.price!=null && data.thumbnail!=null ){
+            resultado = Productos.editar(id, data.title, data.price, data.thumbnail)
+        }
+    }
+    res.json(resultado);
 });
 
 productoRouter.delete('/:id', (req, res)=>{
