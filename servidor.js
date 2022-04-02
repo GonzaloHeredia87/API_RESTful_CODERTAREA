@@ -17,6 +17,17 @@ productoRouter.get('/', (req, res)=>{
     res.json(Productos.obtenerTodo());
 });
 
+productoRouter.get('/:id', (req, res)=>{
+    const index = req.params.id;
+    const data = Productos.buscar(index);
+    console.log('en buscar, id enviado: '+index)
+    res.json(data);
+
+});
+
+
+
+
 productoRouter.post('/', (req, res)=>{
     
     let data = {};
@@ -27,13 +38,13 @@ productoRouter.post('/', (req, res)=>{
     if (req.query.title!=null){
         console.log('Es query params ');
         data = req.query;
-        console.log(data);
+        console.log(resultado);
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
     }else if(req.body.title!=null){
         console.log('No es query params, es Body, viene de un post de html');
         data = req.body;
         resultado = Productos.crear(data.title, data.price, data.thumbnail);
-        console.log(data);
+        console.log(resultado);
     }
     
     
